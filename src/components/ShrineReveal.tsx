@@ -13,13 +13,33 @@ const ShrineReveal = ({ isRevealed }: ShrineRevealProps) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      {/* YouTube video background when revealed */}
+      {isRevealed && (
+        <div className="absolute inset-0 overflow-hidden">
+          <iframe
+            src="https://www.youtube.com/embed/7WXKlCmOtVI?autoplay=1&mute=1&loop=1&playlist=7WXKlCmOtVI&controls=0&showinfo=0&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3&playsinline=1"
+            title="Sukuna Domain Expansion"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            style={{
+              width: "177.78vh",
+              height: "100vh",
+              minWidth: "100vw",
+              minHeight: "56.25vw",
+            }}
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          />
+        </div>
+      )}
+
       {/* Shrine image with slash reveal */}
       <motion.div
-        className="absolute inset-0 animate-slash-reveal"
+        className={`absolute inset-0 animate-slash-reveal ${isRevealed ? "opacity-0" : ""}`}
         style={{
           backgroundImage: `url(${shrineImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          transition: "opacity 2s ease-in-out",
         }}
       >
         {/* Dark gradient overlay */}
